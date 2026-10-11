@@ -1,0 +1,54 @@
+{
+  "name": "dsh-priestess-companion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "悬浮在 DSH 网页最上层的普瑞赛斯：人物图 + 身旁的 DeepSeek 余额，点她会出声并说出那句台词；可拖动、记住位置。",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "icon.svg",
+    "locale/*.json",
+    "assets",
+    "README.md"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "widget",
+    "overlay",
+    "balance",
+    "priestess",
+    "companion",
+    "voice"
+  ],
+  "icon": "./icon.svg",
+  "meta": {
+    "title": "普瑞赛斯 · 陪伴",
+    "description": "普瑞赛斯浮在 DSH 页面的最上层，不会被聊天框或侧栏遮住。她身旁一行显示你 DeepSeek 账户的余额，点她会随机播一条语音、并浮出那句「博士，不准忘记我。」；按住她可以拖到任何地方，位置会被记住。灰边描线与落影跟着她的轮廓走，人物的尺寸、贴角、刷新节奏都在插件配置里可调。"
+  },
+  "//": "meta 与 locale/*.json 各留一份：readPluginMeta 同时会读 <包名>/locale/en.json 与 <包名>/package.json，两处都写才不依赖它读哪一个。改描述时记得两份都改。",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": []
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

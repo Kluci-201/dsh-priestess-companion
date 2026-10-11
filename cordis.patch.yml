@@ -1,0 +1,21 @@
+# 装载层：把本插件插进 profile 的配置树。
+# id 用自己独有的；name 必须等于 package.json 里的 name。
+- insert:
+    - id: priestess-companion
+      name: dsh-priestess-companion
+      config:
+        # 余额来源：account（读 DSH 账号）/ url（问自定义接口）/ fixed（写死数字试样式）
+        source: account
+        # source: url 时填接口地址，例如 http://127.0.0.1:8080/api/balance
+        url: ''
+        # 初始贴角与边距；拖动过之后以浏览器记住的位置为准。
+        # 用 0/0 是因为人物图外面留了 28px 内边距给阴影，视觉位置与原来一致。
+        corner: bottom-right
+        offsetX: 0
+        offsetY: 0
+        # 人物图显示宽度（px），高度永远按比例；本素材 460×518，250 大约合 281px 高
+        scale: 250
+        # 自动刷新间隔（秒）；0 = 只在打开页面时取一次
+        refreshSeconds: 120
+        # 宿主侧缓存秒数；0 = 每次刷新都真的去问
+        cacheSeconds: 20
