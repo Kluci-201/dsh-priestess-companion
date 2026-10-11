@@ -15,9 +15,15 @@ dsh-priestess-companion/
 ├── package.json          插件清单（DSH 用它的 dsh 字段，见下方说明）
 ├── cordis.patch.yml      装载层：把本插件插进 profile 的配置树
 ├── index.js              宿主半：余额路由 + 图片路由
-├── client.js             客户端半：悬浮挂件本体（含全部样式）
+├── client.js             客户端半：悬浮挂件本体（含全部样式 + 内联语音）
 ├── assets/
-│   └── priestess.png     人物图（透明底 PNG，460×518）
+│   └── priestess.png     挂件实际加载的人物图（透明底 PNG，460×518）
+├── voices/
+│   └── line-01.wav       点击她时播放的语音（归档用，见下）
+├── source/
+│   ├── artwork-1280.jpg  原始立绘（博士提供的那张）
+│   ├── cutout-1280.png   全尺寸抠图（1280×1280 透明底）
+│   └── NOTES.md          素材溯源与再生成方式
 ├── locale/
 │   ├── zh.json           展示用的标题与详细描述（中文）
 │   └── en.json           同上（英文）
@@ -25,6 +31,14 @@ dsh-priestess-companion/
 ├── inject_voice.py       把语音内联进 client.js 的小工具
 └── README.md
 ```
+
+### 素材都在包里，但语音是"归档"
+
+`assets/` 是运行时真正读的图；`source/` 与 `voices/` 是**素材归档**，运行时**不读**它们。
+
+尤其注意语音：它是通过 `inject_voice.py` **内联进 `client.js`** 的（base64 data URL），
+所以**改 `voices/line-01.wav` 不会改变播放内容**——要换语音必须重跑那个脚本。为什么这么绕，
+见下方"点击她"一节。`source/NOTES.md` 记着每个素材的来源与哈希。
 
 ### 关于 manifest.json
 
